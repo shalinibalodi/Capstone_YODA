@@ -200,21 +200,21 @@ def parse_parts(message, start, parts):
     else:
         return parse_parts(message, part_end, parts)
 
-
+if __name__ == "__main__": 
 # Usage: python3 raw-dns-req.py github.com
 
-if len(sys.argv) > 1:
-    url = sys.argv[1]
-else:
-    url = "github.com"
+    if len(sys.argv) > 1:
+        url = sys.argv[1]
+    else:
+        url = "github.com"
 
 
-# See get_type function for other possibilities for first argument
-message = build_message("A", url) 
-print("Request:\n" + message)
-print("\nRequest (decoded):" + decode_message(message))
+    # See get_type function for other possibilities for first argument
+    message = build_message("A", url) 
+    print("Request:\n" + message)
+    print("\nRequest (decoded):" + decode_message(message))
 
-# second argument is external DNS server, third argument is port
-response = send_udp_message(message, "1.1.1.1", 53)
-print("\nResponse:\n" + response)
-print("\nResponse (decoded):" + decode_message(response))
+    # second argument is external DNS server, third argument is port
+    response = send_udp_message(message, "1.1.1.1", 53)
+    print("\nResponse:\n" + response)
+    print("\nResponse (decoded):" + decode_message(response))

